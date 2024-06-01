@@ -5,7 +5,6 @@ import { Button, Container, Stack, Drawer, IconButton, List, ListItemButton, Lis
 import { MdMenu } from 'react-icons/md';
 import useScreenDetector from '@/hooks/useScreenDetector';
 
-
 export const NAVS = [
     { label: 'Machine Learning', link: '#!' },
     { label: 'Blockchain', link: '#!' },
@@ -31,7 +30,11 @@ export default function Navbar() {
                     {NAVS.map((item, index) =>
                         <Button
                             size='large'
-                            className="text-black hover:bg-slate-100 py-5 capitalize"
+                            sx={{
+                                textTransform: 'capitalize',
+                                py: 3
+                            }}
+                            className="text-black hover:bg-slate-100"
                             href={item.link}
                             component={Link}
                             key={index}
@@ -74,7 +77,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Stack direction='row'>
                     <Link href="/">
-                        <Typography variant="h1" className='text-[18px]'>Blog App</Typography>
+                        <Typography variant="h1" sx={{ fontSize: '18px' }}>Blog App</Typography>
                     </Link>
                 </Stack>
 

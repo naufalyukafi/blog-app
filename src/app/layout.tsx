@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
+import ThemeRegistry from "./ThemeRegistry";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +25,12 @@ export default function RootLayout({
       <meta property="og:title" content='Blog App - Global News' />
       <meta property="og:description" content='Stay informed with the latest news and breaking stories on Blog App. Explore comprehensive coverage, and timely updates on global events, Machine Learning, Blockchain, and more.' />
       <body className={inter.className}>
-        <NextTopLoader
-          showSpinner={false}
-        />
-        {children}
+        <ThemeRegistry>
+          <NextTopLoader
+            showSpinner={false}
+          />
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
   );
