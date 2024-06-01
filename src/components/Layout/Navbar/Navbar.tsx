@@ -40,7 +40,10 @@ export default function Navbar() {
                         >{item.label}
                         </Button>
                     )}
+
                 </Stack>
+                <Link href="/member" className='bg-[#00626C] text-white p-3 rounded-md'>Our Member</Link>
+
             </>
         );
     };
@@ -79,7 +82,6 @@ export default function Navbar() {
                         <Typography variant="h1" sx={{ fontSize: '20px', color: '#00626C', fontWeight: 'bold' }} className="select-none">BLOG APP</Typography>
                     </Link>
                 </Stack>
-
                 {isMobile() ? renderMobile() : renderDesktop()}
 
             </Stack>
