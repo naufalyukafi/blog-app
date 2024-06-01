@@ -10,16 +10,43 @@ const Header = dynamic(() => import('@/components/Layout/Header/Header'), {
     loading: () => <p>Loading...</p>,
 })
 
-interface FetchDetailArticleListResponse {
-    data: Article;
+interface FetchDetailArticleCommentResponse {
+    data: Article[];
 }
 
 const DetailArticle = async ({
-    params
+    params,
+    searchParams
 }: {
-    params: { id: string }
+    params: { id: string },
+    searchParams?: { [key: string]: string | string[] | undefined }
 }) => {
-    const post: FetchDetailArticleListResponse = await articleService.fetchDetailArticle(params.id);
+    let post;
+    let profile;
+    let comments;
+
+    try {
+        post = await articleService.fetchDetailArticle(params.id);
+    } catch (error) {
+        console.error('Error fetching article data:', error);
+        post = { data: { title: 'Article Not Found', body: '<p>The article could not be found.</p>' } };
+    }
+
+    try {
+        comments = await articleService.fetchDetailArticleComment(params.id) as FetchDetailArticleCommentResponse;
+    } catch (error) {
+        console.error('Error fetching article data:', error);
+        post = { data: [] };
+    }
+
+    try {
+        profile = await articleService.fetchDetailArticleProfile(searchParams?.user_id as string);
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+        profile = { data: { name: 'Unknown Author', email: 'unknown@example.com' } };
+    }
+
+    console.log('comments ', comments)
     return (
         <Header title={post.data.title}>
             <Stack component='article' className='section-spacing-mb'>
@@ -34,7 +61,7 @@ const DetailArticle = async ({
                         }
                     }
                 }}>
-                    <Link color='inherit' href='/'>Home</Link>
+                    <Link href={'/'}>Home</Link>
                     <Typography variant='body2' color='text.primary' className='line-1 capitalize'>{post.data.title}</Typography>
                 </Breadcrumbs>
 
@@ -43,20 +70,25 @@ const DetailArticle = async ({
                 <Box dangerouslySetInnerHTML={{ __html: post.data.body }} />
 
                 <Box className="p-10 bg-slate-100 w-full min-h-28 mt-10 rounded-md flex items-center gap-2">
-                    <Avatar>H</Avatar>
+                    <Avatar>{profile.data.name[0]}</Avatar>
                     <Box>
-                        <Typography variant='body2' color='text.primary' sx={{ fontSize: 18, fontWeight: 'bold' }} className='line-1 capitalize'>Naufal Yukafi</Typography>
-                        <Typography variant='body2' color='text.primary' className='line-1'>naufalyukafi10@gmail.com</Typography>
+                        <Typography variant='body2' color='text.primary' sx={{ fontSize: 18, fontWeight: 'bold' }} className='line-1 capitalize'>{profile.data.name}</Typography>
+                        <Typography variant='body2' color='text.primary' className='line-1'>{profile.data.email}</Typography>
                     </Box>
                 </Box>
                 <Divider sx={{ marginTop: 5, borderBottomColor: '#00626C', borderBottomWidth: 5, marginBottom: 5 }} />
-                <Box className="min-w-full mb-2 rounded-md flex items-center gap-2">
-                    <Box className="w-full">
-                        <Typography variant='body2' color='text.primary' sx={{ fontSize: 18, fontWeight: 'bold' }} className='line-1 capitalize'>Naufal Yukafi</Typography>
-                        <Typography variant='body2' color='text.primary' className='line-1'>naufalyukafi10@gmail.com</Typography>
-                        <Divider sx={{ marginTop: 3 }} />
+                {comments?.data?.map((el, i) => (
+                    <Box key={i}>
+                        <Box className="min-w-full mb-2 rounded-md flex items-center gap-2">
+                            <Box className="w-full">
+                                <Typography variant='body2' color='text.primary' sx={{ fontSize: 18, fontWeight: 'bold' }} className='line-1 capitalize'>{el.name}</Typography>
+                                <Typography variant='body2' color='text.primary' className='line-1'>{el.body}</Typography>
+                                <Divider sx={{ marginTop: 3 }} />
+                            </Box>
+                        </Box>
                     </Box>
-                </Box>
+                ))}
+
             </Stack>
 
         </Header >

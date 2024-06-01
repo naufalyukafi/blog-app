@@ -5,7 +5,7 @@ import { Article } from '@/type/article'
 export default function ArticleCard({ data }: { data: Article }) {
     return (
         <Card component='article' sx={{ height: 1 }} className="hover:shadow-2xl">
-            <ButtonBase component={Link} href={`articles/${data.id}`} sx={{
+            <ButtonBase component={Link} href={`articles/${data.id}?user_id=${data.user_id}`} sx={{
                 display: 'flex',
                 flexFlow: 'column',
                 justifyContent: 'unset',

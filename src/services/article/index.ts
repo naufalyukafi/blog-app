@@ -9,7 +9,12 @@ const articleService = {
     fetchDetailArticle(id: string) {
         return apiBlogApp.get(`/posts/${id}`);
     },
-
+    fetchDetailArticleComment(id: string) {
+        return apiBlogApp.get(`/posts/${id}/comments`);
+    },
+    fetchDetailArticleProfile(userId: string) {
+        return apiBlogApp.get(`/users/${userId}`);
+    },
 }
 
 export default articleService;
