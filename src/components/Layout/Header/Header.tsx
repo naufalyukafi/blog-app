@@ -3,13 +3,13 @@ import Head from 'next/head'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import NProgress from '@/components/UI/Nprogress'
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 interface HeaderProps {
     children: React.ReactNode,
     header?: boolean
     footer?: boolean
-    title: string | false
+    title?: string | false
 }
 
 
@@ -21,8 +21,10 @@ export default function Header({ title, header = true, footer = true, children }
         </Head>
 
         {header !== false && <Navbar />}
-        <Box component='main' flex={1} className="min-h-screen">
-            {children}
+        <Box component='main' flex={1} className="min-h-screen mx-auto mt-4">
+            <Container>
+                {children}
+            </Container>
         </Box>
         {footer !== false && <Footer />}
 
