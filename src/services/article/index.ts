@@ -6,6 +6,9 @@ const articleService = {
         const currentPage = page ?? 1
         return apiBlogApp.get(`/posts?page=${currentPage}&per_page=12`);
     },
+    fetchDetailArticle(id: string) {
+        return apiBlogApp.get(`/posts/${id}`);
+    },
 
 }
 
