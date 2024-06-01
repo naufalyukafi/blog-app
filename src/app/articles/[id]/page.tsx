@@ -28,25 +28,21 @@ const DetailArticle = async ({
     try {
         post = await articleService.fetchDetailArticle(params.id);
     } catch (error) {
-        console.error('Error fetching article data:', error);
         post = { data: { title: 'Article Not Found', body: '<p>The article could not be found.</p>' } };
     }
 
     try {
         comments = await articleService.fetchDetailArticleComment(params.id) as FetchDetailArticleCommentResponse;
     } catch (error) {
-        console.error('Error fetching article data:', error);
         post = { data: [] };
     }
 
     try {
         profile = await articleService.fetchDetailArticleProfile(searchParams?.user_id as string);
     } catch (error) {
-        console.error('Error fetching profile data:', error);
         profile = { data: { name: 'Unknown Author', email: 'unknown@example.com' } };
     }
 
-    console.log('comments ', comments)
     return (
         <Header title={post.data.title}>
             <Stack component='article' className='section-spacing-mb'>
