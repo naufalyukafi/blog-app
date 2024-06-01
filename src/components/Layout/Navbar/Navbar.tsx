@@ -29,7 +29,6 @@ export default function Navbar() {
                 <Stack direction='row' component='nav' className='m-0 p-0'>
                     {NAVS.map((item, index) =>
                         <Button
-                            size='large'
                             sx={{
                                 textTransform: 'capitalize',
                                 py: 3
@@ -76,8 +75,8 @@ export default function Navbar() {
             <Stack direction="row" component={Container} className='flex justify-between items-center'>
                 {/* Logo */}
                 <Stack direction='row'>
-                    <Link href="/">
-                        <Typography variant="h1" sx={{ fontSize: '18px' }}>Blog App</Typography>
+                    <Link href="/" className=''>
+                        <Typography variant="h1" sx={{ fontSize: '20px', color: '#00626C', fontWeight: 'bold' }} className="select-none">BLOG APP</Typography>
                     </Link>
                 </Stack>
 

@@ -1,14 +1,14 @@
 import Header from "@/components/Layout/Header/Header";
-import Link from "next/link";
+import Home from "./home"
 
-export default function Home() {
-
+export default function Page({
+  searchParams
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) {
   return (
     <Header>
-      <Link href="/blog">
-        <h1>Blog</h1>
-      </Link>
-
+      <Home page={searchParams?.page as string} />
     </Header>
   );
 }

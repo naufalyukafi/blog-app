@@ -40,7 +40,7 @@ export default function Footer() {
                         <Typography variant='body1' component='h3' className='font-semibold'>Follow Us</Typography>
                         <Stack direction='row' gap={1.5}>
                             {SOCIAL_MEDIA_LINKS.map((item, index) =>
-                                <Fab rel='noopener noreferrer' aria-label='Social link' component={Link} href={item.link} className='text-[16px] text-white bg-blue-600 hover:bg-blue-900' key={index}>{item.children}</Fab>
+                                <Fab rel='noopener noreferrer' aria-label='Social link' component={Link} href={item.link} className='text-[16px] text-white bg-[#00626C] hover:bg-[rgb(35,83,88)]' key={index}>{item.children}</Fab>
                             )}
                         </Stack>
                     </Stack>
