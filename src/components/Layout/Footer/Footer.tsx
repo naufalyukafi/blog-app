@@ -22,7 +22,7 @@ export default function Footer() {
     return (
         <Stack component='footer' className='bg-slate-50'>
             <Stack component={Container} divider={<Divider />} className='pt-5'>
-                <Box className="flex justify-between mb-16">
+                <Box className="flex justify-between flex-wrap mb-16">
                     <Stack alignItems='start' gap={2} className='max-w-md font-semibold'>
                         Blog App
                         <Typography variant='body2' className='text-[#6C737F]'>
@@ -31,12 +31,12 @@ export default function Footer() {
                     </Stack>
 
                     {/* Links */}
-                    <Grid item xs={12} sm={4} md={4}>
+                    <Grid item xs={12} sm={4} md={4} className="mt-4 md:mt-0">
                         {createNavItems(NAVS.LINKS, 'Links')}
                     </Grid>
 
                     {/* Follow Us */}
-                    <Stack gap={2}>
+                    <Stack gap={2} className="mt-4 md:mt-0">
                         <Typography variant='body1' component='h3' className='font-semibold'>Follow Us</Typography>
                         <Stack direction='row' gap={1.5}>
                             {SOCIAL_MEDIA_LINKS.map((item, index) =>
