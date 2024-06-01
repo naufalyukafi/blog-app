@@ -2,7 +2,6 @@ import Head from 'next/head'
 
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
-import NProgress from '@/components/UI/Nprogress'
 import { Box, Container } from '@mui/material'
 
 interface HeaderProps {
@@ -28,6 +27,5 @@ export default function Header({ title, header = true, footer = true, children }
         </Box>
         {footer !== false && <Footer />}
 
-        {/* <NProgress /> */}
     </>
 }
