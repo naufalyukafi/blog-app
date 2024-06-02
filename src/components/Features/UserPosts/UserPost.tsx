@@ -1,9 +1,18 @@
+"use client";
+import ModalDelete from '@/app/member/_parts/ModalDelete'
+import memberState from '@/store/member';
 import { User } from '@/type/user'
 import { IconButton } from '@mui/material'
-import React from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
+import { useRecoilState } from 'recoil';
 
 const UserPostCard = ({ data }: { data: User }) => {
+    const [payload, setPayload] = useRecoilState(memberState);
+
+    const [modalDelete, setModalDelete] = useState(false)
+    const router = useRouter()
     return (
         <div className='shadow-lg hover:shadow-2xl p-5 relative min-h-72 w-full'>
             <div className="flex items-center  p-3 rounded-md ">
@@ -25,9 +34,20 @@ const UserPostCard = ({ data }: { data: User }) => {
 
             </div>
             <div className="flex items-center space-x-2 absolute bottom-2 right-2">
-                <IconButton><FaEdit /></IconButton>
-                <IconButton><FaTrash /></IconButton>
+                <IconButton onClick={() => router.push(`/member/edit/${data.id}`)}><FaEdit /></IconButton>
+                <IconButton><FaTrash onClick={() => {
+                    setModalDelete(true)
+                    setPayload(data)
+                }} /></IconButton>
             </div>
+            <ModalDelete
+                data={payload}
+                open={modalDelete}
+                setOpen={setModalDelete}
+                onSuccessSubmit={() => {
+
+                }}
+            />
         </div>
 
     )

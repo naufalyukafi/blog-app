@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import ThemeRegistry from "./ThemeRegistry";
+import ToasterAlert from "@/components/Features/Toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           />
           {children}
         </ThemeRegistry>
+        <ToasterAlert />
       </body>
     </html>
   );

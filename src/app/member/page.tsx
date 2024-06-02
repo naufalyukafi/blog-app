@@ -5,6 +5,7 @@ import { User } from '@/type/user';
 import { Button, Stack } from '@mui/material';
 import React from 'react'
 import SearchWrapper from './_parts/SearchWrapper';
+import Link from 'next/link';
 
 interface FetchUserListResponse {
     data: User[];
@@ -19,15 +20,14 @@ const Member = async ({ searchParams }: {
     const filteredData = search && search.length > 0
         ? post?.data?.filter(user => user.name.toLowerCase().includes(search.toLowerCase()))
         : post?.data;
+
     return (
         <Header>
             <Stack flexDirection="row" className='gap-2 flex flex-wrap justify-end'>
-                {/* <div> */}
                 <SearchWrapper />
-                <Button size="small" variant='contained'>New Member</Button>
-
-                {/* </div> */}
-
+                <Link href="/member/create">
+                    <Button size="large" variant="contained" className='capitalize'>Create Project</Button>
+                </Link>
             </Stack>
             <div className='w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-14 mt-10 mb-5'>
                 {
@@ -39,9 +39,6 @@ const Member = async ({ searchParams }: {
                     ))
                 }
             </div>
-            {/* <div className='my-10 flex justify-center'>
-                <PaginationWrapper page={parseInt(page)} />
-            </div> */}
 
         </Header>
     )

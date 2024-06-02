@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 
+
 const SearchWrapper = () => {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -36,15 +37,19 @@ const SearchWrapper = () => {
     };
 
     return (
-        <div style={{ display: 'flex', gap: '8px' }}>
-            <TextField
-                variant="outlined"
-                size="small"
-                placeholder="Search by name"
-                value={searchQuery}
-                onChange={handleChange}
-            />
-        </div>
+        <>
+            <div style={{ display: 'flex', gap: '8px' }}>
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    placeholder="Search by name"
+                    value={searchQuery}
+                    onChange={handleChange}
+                />
+            </div>
+
+        </>
+
     );
 };
 

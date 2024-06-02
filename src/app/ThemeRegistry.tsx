@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Space_Grotesk, Inter, Lato, Roboto } from "next/font/google";
 import material from "@/config/material";
 import "./globals.css";
+import { RecoilRoot } from "recoil";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
@@ -27,19 +28,17 @@ export default function ThemeRegistry(props: any) {
     const { children } = props;
 
     return (
-        <>
+        <RecoilRoot>
             <StyledEngineProvider injectFirst>
                 <ThemeProvider theme={material}>
-
                     <CssBaseline />
                     <main
                         className={`${inter.className} ${spaceGrotesk.variable} ${inter.variable} ${lato.variable}`}
                     >
                         {children}
                     </main>
-
                 </ThemeProvider>
             </StyledEngineProvider>
-        </>
+        </RecoilRoot>
     );
 }

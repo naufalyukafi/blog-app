@@ -1,4 +1,4 @@
-import { BroadcastChannel } from "worker_threads";
+// import { BroadcastChannel } from "worker_threads";
 
 const localUser = {
     get() {
@@ -25,8 +25,8 @@ const localUser = {
     remove() {
         localStorage.removeItem('user');
 
-        const channel = new BroadcastChannel('userAccess');
-        channel.postMessage('logout');
+        // const channel = new BroadcastChannel('userAccess');
+        // channel.postMessage('logout');
 
         return Promise.resolve(true);
     }

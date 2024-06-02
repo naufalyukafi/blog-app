@@ -42,7 +42,7 @@ export default function Navbar() {
                     )}
 
                 </Stack>
-                <Link href="/member" className='bg-[#00626C] text-white p-3 rounded-md'>Our Member</Link>
+                <Link href="/member" className='bg-[#00626C] text-white p-3  text-[14px] rounded-md'>Our Member</Link>
 
             </>
         );
