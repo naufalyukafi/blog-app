@@ -20,7 +20,7 @@ export default function ArticleCard({ data }: { data: Article }) {
                     gap: 2
                 }}>
                     <Stack>
-                        <Typography variant='h3' className='line-1 font-roboto text-[#00626C]' sx={{ fontSize: 14, marginBottom: 2, fontWeight: 600 }}>{data.title}</Typography>
+                        <Typography variant='h2' className='line-1 font-roboto text-[#00626C]' sx={{ fontSize: 14, marginBottom: 2, fontWeight: 600 }}>{data.title}</Typography>
                         <Typography variant='body2' className='line-1 text-[#6C737F]' sx={{ fontSize: 12 }}>
                             {data.body.length > 120 ? `${data.body.slice(0, 120)}...` : data.body}
                         </Typography>
